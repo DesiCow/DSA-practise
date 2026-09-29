@@ -1,7 +1,4 @@
 #include <iostream>
-//
-// Created by Utkarsh Upadhyay on 29-09-2026.
-//
 
 // Move the Max to right extreme by adjacent swapping
 void bubbleSort(int array[], int n) {
@@ -43,6 +40,49 @@ void insertionSort(int array[], int n) {
     for (int i = 0; i < n-1; i++) std::cout << array[i] << " ";
 }
 
+void merge(int array[], int low, int mid, int high) {
+    int numberOfElements = high - low + 1;
+    int tempArray[numberOfElements];
+
+    int leftPointer = low;
+    int rightPointer = mid + 1;
+    int i = 0;
+    while (leftPointer <= mid && rightPointer <= high) {
+        if (array[leftPointer] <= array[rightPointer]) {
+            tempArray[i] = array[leftPointer];
+            leftPointer++;
+        }
+        else {
+            tempArray[i] = array[rightPointer];
+            rightPointer++;
+        }
+        i++;
+    }
+    while (leftPointer <= mid) {
+        tempArray[i] = array[leftPointer];
+        i++;
+        leftPointer++;
+    }
+    while (rightPointer <= high) {
+        tempArray[i] = array[rightPointer];
+        i++;
+        rightPointer++;
+    }
+
+    for (int j = 0; j <= high - low; j++) {
+        array[j + low] = tempArray[j];
+    }
+}
+
+void mergeSort(int array[], int low, int high) {
+    if (low >= high) return;
+
+    int mid = (low + high) / 2;
+    mergeSort(array, low, mid);
+    mergeSort(array, mid + 1, high);
+    merge(array, low, mid, high);
+}
+
 
 
 int main() {
@@ -50,6 +90,7 @@ int main() {
     std::cin >> n;
     int array[n];
     for (int i = 0; i < n; i++) std::cin >> array[i];
-    selectionSort(array, n);
+    mergeSort(array, 0, n - 1);
+    for (int i = 0; i < n; i++) std::cout << array[i] << std::endl;
     return 0;
 }
