@@ -83,6 +83,43 @@ void mergeSort(int array[], int low, int high) {
     merge(array, low, mid, high);
 }
 
+// this doesn't really work as of now, will fix it
+// We move a pivot(lets say first index) to its correct position, apply recursion on either sides of pivot with same algo until we get final answer
+void quickSort(int array[], int low, int high) {
+    if (low >= high) return;
+
+    int pivot = low;
+    int i = low;
+    bool iSwappable = false;
+    int j = high;
+    bool jSwappable = false;
+
+    while (i < j) {
+        if (array[i] >= array[pivot]) iSwappable = true;
+
+        if (array[j] <= array[pivot]) jSwappable = true;
+
+        if (iSwappable && jSwappable) {
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            iSwappable = false;
+            jSwappable = false;
+        }
+        i++;
+        j--;
+
+    }
+
+    pivot = i + 1;
+    int temp = array[pivot];
+    array[pivot] = array[low];
+    array[low] = temp;
+
+    quickSort(array, low, pivot - 1);
+    quickSort(array, pivot + 1, high);
+}
+
 
 
 int main() {
@@ -90,7 +127,9 @@ int main() {
     std::cin >> n;
     int array[n];
     for (int i = 0; i < n; i++) std::cin >> array[i];
-    mergeSort(array, 0, n - 1);
+
+    quickSort(array, 0, n - 1);
     for (int i = 0; i < n; i++) std::cout << array[i] << std::endl;
+
     return 0;
 }
