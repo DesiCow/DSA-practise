@@ -123,6 +123,7 @@ void quickSort(int array[], int low, int high) {
 
 
 int main() {
+    std::cout << ;
     int n;
     std::cin >> n;
     int array[n];
