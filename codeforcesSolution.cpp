@@ -84,9 +84,20 @@ void a181() {
     cout << yAns << " " << xAns << endl;
 }
 
+// https://codeforces.com/problemset/problem/1665/A
+void a1665(int n) {
+    cout << n - 3 << " " << 1 << " " << 1 << " " << 1 << "\n";
+}
+
 
 int main() {
-    a181();
+    int lines {};
+    cin >> lines;
+    int number {};
+    for (int i = 0; i < lines; i++) {
+        cin >> number;
+        a1665(number);
+    }
 };
 
 
