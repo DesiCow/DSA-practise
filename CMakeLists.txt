@@ -3,7 +3,7 @@ project(HelloDSA)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(untitled1 patterns.cpp)
+add_executable(patterns patterns.cpp)
 add_executable(sorting sorting.cpp
         codeforcesSolution.cpp)
 add_executable(stl stl.cpp)
